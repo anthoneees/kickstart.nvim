@@ -144,5 +144,15 @@ return {
         detached = vim.fn.has 'win32' == 0,
       },
     }
+
+    dap.configurations.go = {
+      {
+        type = 'go',
+        name = 'Debug Go Server',
+        request = 'launch',
+        program = '/home/anth/Documents/Projects/Work/go-server', -- directory, not file
+        cwd = '/home/anth/Documents/Projects/Work/go-server',
+      },
+    }
   end,
 }
