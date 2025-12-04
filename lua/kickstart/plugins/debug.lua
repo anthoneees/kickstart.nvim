@@ -95,6 +95,8 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'js',
+        'chrome',
       },
     }
 
@@ -136,6 +138,23 @@ return {
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
+    dap.adapters['pwa-chrome'] = {
+      type = 'server',
+      host = '127.0.0.1',
+      port = 9222,
+    }
+
+    dap.configurations.javascript = {
+      {
+        type = 'pwa-chrome',
+        request = 'attach',
+        name = 'Attach to Vite App',
+        url = 'http://localhost:5173',
+        webRoot = '/home/anth/Documents/Projects/Work/workflow-tool/client',
+        sourceMaps = true,
+      },
+    }
+
     -- Install golang specific config
     require('dap-go').setup {
       delve = {
@@ -150,8 +169,8 @@ return {
         type = 'go',
         name = 'Debug Go Server',
         request = 'launch',
-        program = '/home/anth/Documents/Projects/Work/go-server', -- directory, not file
-        cwd = '/home/anth/Documents/Projects/Work/go-server',
+        program = '/home/anth/Documents/Projects/Work/workflow-tool/go-server', -- directory, not file
+        cwd = '/home/anth/Documents/Projects/Work/workflow-tool/go-server',
       },
     }
   end,
