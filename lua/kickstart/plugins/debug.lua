@@ -95,8 +95,6 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
-        'js',
-        'chrome',
       },
     }
 
@@ -138,24 +136,6 @@ return {
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
-    dap.adapters['pwa-chrome'] = {
-      type = 'server',
-      host = '127.0.0.1',
-      port = 9222,
-    }
-
-    dap.configurations.javascript = {
-      {
-        type = 'pwa-chrome',
-        request = 'attach',
-        name = 'Attach to Vite App',
-        url = 'http://localhost:5173',
-        webRoot = '/home/anth/Documents/Projects/Work/workflow-tool/client',
-        sourceMaps = true,
-      },
-    }
-
-    -- Install golang specific config
     require('dap-go').setup {
       delve = {
         -- On Windows delve must be run attached or it crashes.
@@ -167,10 +147,20 @@ return {
     dap.configurations.go = {
       {
         type = 'go',
-        name = 'Debug Go Server',
+        name = 'Debug: main.go (go run)',
         request = 'launch',
-        program = '/home/anth/Documents/Projects/Work/workflow-tool/go-server', -- directory, not file
-        cwd = '/home/anth/Documents/Projects/Work/workflow-tool/go-server',
+        program = '${workspaceFolder}/main.go',
+        args = {},
+        cwd = '${workspaceFolder}',
+        console = 'integratedTerminal',
+      },
+      {
+        type = 'go',
+        name = 'Debug: package (build + run)',
+        request = 'launch',
+        program = '${workspaceFolder}',
+        cwd = '${workspaceFolder}',
+        console = 'integratedTerminal',
       },
     }
   end,
