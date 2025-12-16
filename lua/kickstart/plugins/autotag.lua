@@ -1,24 +1,22 @@
+-- lua/kickstart/plugins/autotag.lua
 return {
   'windwp/nvim-ts-autotag',
-  event = 'InsertEnter',
-  ft = {
-    'html',
-    'javascript',
-    'typescript',
-    'jsx',
-    'tsx',
-    'astro',
-    'glimmer',
-    'handlebars',
-    'liquid',
-    'markdown',
-    'php',
-    'rescript',
+  event = 'InsertEnter', -- or InsertEnter
+  dependencies = {
+    'nvim-treesitter/nvim-treesitter',
   },
   config = function()
     require('nvim-ts-autotag').setup {
-      enable_close = true,
-      enable_rename = true,
+      opts = {
+        enable_close = true,
+        enable_rename = true,
+        enable_close_on_slash = false,
+      },
+      per_filetype = {
+        html = {
+          enable_close = true,
+        },
+      },
     }
   end,
 }
