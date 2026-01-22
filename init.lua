@@ -408,9 +408,6 @@ require('lazy').setup({
 
       -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
-
-      -- Allows extra capabilities provided by blink.cmp
-      'saghen/blink.cmp',
     },
     config = function()
       local lsp = require 'kickstart.config'
@@ -585,7 +582,11 @@ require('lazy').setup({
             end,
           },
         },
-        opts = {},
+        opts = {
+          keymap = {
+            preset = 'none',
+          },
+        },
       },
       'folke/lazydev.nvim',
     },
