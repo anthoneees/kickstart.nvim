@@ -94,6 +94,10 @@ M.servers = {
   html = {},
   cssls = {},
   hyprls = {},
+  htmx = {},
+  templ = {},
+  tailwindcss = {},
+  clangd = {},
 }
 
 M.filetype_to_server = {}
