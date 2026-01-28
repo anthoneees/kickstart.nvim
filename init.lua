@@ -531,7 +531,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = {}
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
@@ -761,6 +761,8 @@ require('lazy').setup({
   require 'kickstart.plugins.harpoon2',
   require 'kickstart.plugins.oil',
   require 'kickstart.plugins.remote-ssh',
+  require 'kickstart.plugins.remote-nvim',
+  require 'kickstart.plugins.markdown-preview',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.

@@ -98,6 +98,7 @@ M.servers = {
   templ = {},
   tailwindcss = {},
   clangd = {},
+  pyright = {},
 }
 
 M.filetype_to_server = {}
